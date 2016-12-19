@@ -71,8 +71,8 @@ print('----------RECOGNITION PHONEME "a"----------')
 print("a_true", a_true)
 print("a_false", a_false)
 
-# recognition accuracy for phoneme 'a', t.k. I us 80%*lengths set for phoneme 'a' = all lengths set for phoneme 'n' =>
-# lengths tes set N_a = 20%*len(corpus['n'])/80% = 24, quantity true recognition n_a = 47
+# recognition accuracy for phoneme 'a': t.k. I us 80%*lengths set for phoneme 'a' = all lengths set for phoneme 'n' =>
+# lengths test set N_a = 20%*len(corpus['n'])/80% = 24, quantity true recognition n_a = 47
 N_a = 24.0
 n_a = 47.0
 acc_a = n_a/N_a
