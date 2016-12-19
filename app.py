@@ -55,8 +55,8 @@ model_n.fit(concat_n, lengths_n)
 #print (model_n)
 
 
-# recognition phoneme 'a', using model_a, lengths set = all lengths set for phoneme 'n', t.k.
-#80%*lengths set for phoneme 'a' > all lengths set for phoneme 'n'
+# recognition phoneme 'a', using model_a, lengths set = all lengths set for phoneme 'n', len(corpus['n']) = 97 ,
+# t.k. 80%*lengths set for phoneme 'a' > all lengths set for phoneme 'n'
 a_true = 0
 a_false = 0
 for i in range(int(len(corpus['n']))):
@@ -71,8 +71,9 @@ print('----------RECOGNITION PHONEME "a"----------')
 print("a_true", a_true)
 print("a_false", a_false)
 
-# recognition accuracy for phoneme 'a' lengths tes set N = 224-179 = 45, quantity true recognition n = 47
-N_a = 45.0
+# recognition accuracy for phoneme 'a', t.k. I us 80%*lengths set for phoneme 'a' = all lengths set for phoneme 'n' =>
+# lengths tes set N_a = 20%*len(corpus['n'])/80% = 24, quantity true recognition n_a = 47
+N_a = 24.0
 n_a = 47.0
 acc_a = n_a/N_a
 print ("recognition accuracy for phoneme 'a', acc_a= ",acc_a)
@@ -93,7 +94,7 @@ print("n_true", n_true)
 print("n_false", n_false)
 
 
-# recognition accuracy for phoneme 'n' lengths tes set N = 97-77 = 20, quantity true recognition n = 54
+# recognition accuracy for phoneme 'n' lengths tes set N_n = 97-77 = 20, quantity true recognition n_n = 54
 N_n = 20.0
 n_n = 54.0
 acc_n = n_n/N_n
