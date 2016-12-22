@@ -55,14 +55,12 @@ model_n.fit(concat_n, lengths_n)
 #print (model_n)
 
 
-# recognition phoneme 'a', using model_a, lengths set = all lengths set for phoneme 'n', len(corpus['n']) = 97 ,
-# t.k. 80%*lengths set for phoneme 'a' > all lengths set for phoneme 'n'
+# recognition phoneme 'a', using model_a, lengths set = all lengths set for phoneme 'a'
 a_true = 0
 a_false = 0
-for i in range(int(len(corpus['n']))):
-    xa_a = corpus['a'][i]
-    xn_a = corpus['n'][i]
-    if model_a.score(xa_a) > model_a.score(xn_a):
+for i in range(len(corpus['a'])):
+    xa = corpus['a'][i]
+    if model_a.score(xa) > model_n.score(xa):
         a_true += 1
     else:
         a_false += 1
@@ -71,20 +69,15 @@ print('----------RECOGNITION PHONEME "a"----------')
 print("a_true", a_true)
 print("a_false", a_false)
 
-# recognition accuracy for phoneme 'a': t.k. I us 80%*lengths set for phoneme 'a' = all lengths set for phoneme 'n' =>
-# lengths test set N_a = 20%*len(corpus['n'])/80% = 24, quantity true recognition n_a = 47
-N_a = 24.0
-n_a = 47.0
-acc_a = n_a/N_a
-print ("recognition accuracy for phoneme 'a', acc_a= ",acc_a)
+acc_a = float(a_true) / len(corpus['a'])
+print ("recognition accuracy for phoneme 'a', acc_a = ",acc_a)
 
-# recognition phoneme 'n', using model_n, lengths set = leraning set l_n = len(corpus['n'])*0.8 = 77
+# recognition phoneme 'n', using model_n, lengths set = all lengths set for phoneme 'n'
 n_true = 0
 n_false = 0
-for i in range(int(len(corpus['n'])*0.8)):
-    xa_n = corpus['a'][i]
-    xn_n = corpus['n'][i]
-    if model_n.score(xn_n) > model_n.score(xa_n):
+for i in range(len(corpus['n'])):
+    xn = corpus['n'][i]
+    if model_n.score(xn) > model_a.score(xn):
         n_true += 1
     else:
         n_false += 1
@@ -93,9 +86,5 @@ print('----------RECOGNITION PHONEME "n"----------')
 print("n_true", n_true)
 print("n_false", n_false)
 
-
-# recognition accuracy for phoneme 'n' lengths tes set N_n = 97-77 = 20, quantity true recognition n_n = 54
-N_n = 20.0
-n_n = 54.0
-acc_n = n_n/N_n
-print ("recognition accuracy for phoneme 'n', acc_n= ",acc_n)
+acc_n = float(n_true) / len(corpus['n'])
+print ("recognition accuracy for phoneme 'n', acc_n = ",acc_n)
