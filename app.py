@@ -55,7 +55,7 @@ model_n.fit(concat_n, lengths_n)
 #print (model_n)
 
 
-# recognition phoneme 'a', using model_a, lengths set = all lengths set for phoneme 'a'
+# recognition phoneme 'a', using model_a and model_n, lengths set = all lengths set for phoneme 'a'
 a_true = 0
 a_false = 0
 for i in range(len(corpus['a'])):
@@ -72,7 +72,7 @@ print("a_false", a_false)
 acc_a = float(a_true) / len(corpus['a'])
 print ("recognition accuracy for phoneme 'a', acc_a = ",acc_a)
 
-# recognition phoneme 'n', using model_n, lengths set = all lengths set for phoneme 'n'
+# recognition phoneme 'n', using model_a and model_n, lengths set = all lengths set for phoneme 'n'
 n_true = 0
 n_false = 0
 for i in range(len(corpus['n'])):
