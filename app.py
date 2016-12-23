@@ -55,10 +55,13 @@ model_n.fit(concat_n, lengths_n)
 #print (model_n)
 
 
-# recognition phoneme 'a', using model_a and model_n, lengths set = all lengths set for phoneme 'a'
+# recognition phoneme 'a', using model_a and model_n, lengths set = 20% lengths set for phoneme 'a'
 a_true = 0
 a_false = 0
-for i in range(len(corpus['a'])):
+a_s = int(len(corpus['a'])*0.8)
+a_f = int(len(corpus['a']))
+a_t = len(corpus['a'])*0.2
+for i in range(a_s, a_f):
     xa = corpus['a'][i]
     if model_a.score(xa) > model_n.score(xa):
         a_true += 1
@@ -69,13 +72,16 @@ print('----------RECOGNITION PHONEME "a"----------')
 print("a_true", a_true)
 print("a_false", a_false)
 
-acc_a = float(a_true) / len(corpus['a'])
+acc_a = float(a_true) / a_t
 print ("recognition accuracy for phoneme 'a', acc_a = ",acc_a)
 
-# recognition phoneme 'n', using model_a and model_n, lengths set = all lengths set for phoneme 'n'
+# recognition phoneme 'n', using model_a and model_n, lengths set = 20% lengths set for phoneme 'n'
 n_true = 0
 n_false = 0
-for i in range(len(corpus['n'])):
+n_s = int(len(corpus['n'])*0.8)
+n_f = int(len(corpus['n']))
+n_t = len(corpus['n'])*0.2
+for i in range(n_s, n_f):
     xn = corpus['n'][i]
     if model_n.score(xn) > model_a.score(xn):
         n_true += 1
@@ -86,5 +92,5 @@ print('----------RECOGNITION PHONEME "n"----------')
 print("n_true", n_true)
 print("n_false", n_false)
 
-acc_n = float(n_true) / len(corpus['n'])
+acc_n = float(n_true) / n_t
 print ("recognition accuracy for phoneme 'n', acc_n = ",acc_n)
